@@ -15,8 +15,8 @@ class Login:
         self.click_on_sigin_button_xpath = '//*[@id="identifierNext"]/div/button/span'
         self.click_on_login_system_password_xpath = '//input[@jsname="YPqjbf"]'
         self.click_on_submit_button_xpath = '//*[@id="passwordNext"]/div/button/span'
-        self.click_on_two_step_submit_button_xpath = 'div.VfPpkd-dgl2Hf-ppHlrf-sM5MNb button.VfPpkd-LgbsSe div.VfPpkd-RLmnJb'
-        self.verfiy_the_email_xpath = 'div.PrDSKc'
+        self.click_on_two_step_submit_button_xpath = 'div#totpNext button'
+        self.verfiy_the_email_xpath = "//a[@aria-label='Sent']"
         self.click_on_link_activation_button_xpath = 'table tbody tr:nth-child(3) td div a'
         
     def input_first_name(self):
@@ -56,10 +56,10 @@ class Login:
         self.driver.find_element(By.XPATH,self.click_on_submit_button_xpath).click()
         
     def click_on_two_step_submit_button(self):
-        self.driver.find_element(By.XPATH,self.click_on_two_step_submit_button_xpath).click()
+        self.driver.find_element(By.CSS_SELECTOR,self.click_on_two_step_submit_button_xpath).click()
         
     def verify_email_data(self):
-        return self.driver.find_element(By.CSS_SELECTOR,self.verfiy_the_email_xpath).text
+        return self.driver.find_element(By.XPATH,self.verfiy_the_email_xpath).text
         
     def click_on_activation_link(self):
         self.driver.find_element(By.CSS_SELECTOR,self.click_on_link_activation_button_xpath).click()

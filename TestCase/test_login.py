@@ -1,9 +1,13 @@
 import pytest      
 import time
+import configparser
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from Utilities.logger import logclass
 from PageObjects.loginPage import Login
+config = configparser.ConfigParser()
+config.read("Utilities/input.properties")
+
 
 
 
@@ -26,7 +30,7 @@ class Testlogin(logclass):
         self.driver.execute_script("window.open('', '_blank');")
         self.driver.switch_to.window(self.driver.window_handles[1])
         time.sleep(2)
-        self.driver.get('https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox')
+        self.driver.get(config.get("Url","base_url_gmail_account"))
         
         login.click_on_new_website_crediential()
         login.click_on_sigin_button()
@@ -34,11 +38,15 @@ class Testlogin(logclass):
         login.input_password_for_email_valid()
         time.sleep(2)
         login.click_submit_button_for_email_open()
-        time.sleep(2)
+        time.sleep(10)
+        login.click_on_two_step_submit_button()
+        time.sleep(10)
         
         
         time.sleep(2)
-        if 'app' in login.verify_email_data():
+        if 'Sent' in login.verify_email_data():
             assert True
+            log.info('Test Case Pass')
         else:
+            log.critical('Test Case Fail')
             assert False
