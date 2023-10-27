@@ -44,7 +44,7 @@ class Login:
         self.driver.find_element(By.XPATH, self.click_on_submit_button_xpath).click()
     
     def click_on_new_website_crediential(self):
-        self.driver.find_element(By.XPATH,self.click_on_login_sytem_email_xpath).send_keys('shubham.vijayvargiya@arcgate.com')
+        self.driver.find_element(By.XPATH,self.click_on_login_sytem_email_xpath).send_keys('loginsystem59@gmail.com')
         
     def click_on_sigin_button(self):
         self.driver.find_element(By.XPATH,self.click_on_sigin_button_xpath).click()
